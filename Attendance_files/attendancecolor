@@ -1,0 +1,33 @@
+.datatable-green{
+	color: white !important;
+	font-weight:bold;
+}
+.datatable-yellow{
+	color: white !important;
+	font-weight:bold;
+}
+.datatable-red{
+	color: white !important;
+	font-weight:bold;
+}
+table > tbody > tr > td.my-vertical-padding {
+  padding: 0 30px;
+}
+.myTable .slds-has-button-menu .slds-th__action{
+    background:#f6f6f6;
+}
+table > tbody > tr > td.datatable-yellow > lightning-primitive-cell-factory > span > div > lightning-base-formatted-text{
+    background: #E69B00;
+    border-radius: 8px;
+    padding: 0 30px;
+}
+table > tbody > tr > td.datatable-green > lightning-primitive-cell-factory > span > div > lightning-base-formatted-text{
+    background: #2E844A;
+    border-radius: 8px;
+    padding: 0 30px;
+}
+table > tbody > tr > td.datatable-red > lightning-primitive-cell-factory > span > div > lightning-base-formatted-text{
+    background: #F02828;
+    border-radius: 8px;
+    padding: 0 30px;
+}
