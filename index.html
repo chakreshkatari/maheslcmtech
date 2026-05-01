@@ -7,16 +7,16 @@
     <style>
         /* 1. Background Setup - Updated for reliability */
         body, html {
-            height: 100%;
-            margin: 0;
-            font-family: Arial, sans-serif;
-            /* If background.jpg fails, it will show a grey color instead of white */
-            background: #2c2c2c url('background.jpg') no-repeat center center fixed; 
-            background-size: cover;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    /* Anchor to 'left top' so the logo is prioritized */
+    background: #2c2c2c url('background.jpg') no-repeat left top fixed; 
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
         /* 2. Transparent Login Card */
         .login-card {
