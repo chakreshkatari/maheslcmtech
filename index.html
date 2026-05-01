@@ -3,48 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - SLCM</title>
+    <title></title>
     <style>
-        body { font-family: sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f9; margin: 0; }
-        .login-card { background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 100%; max-width: 320px; }
-        .login-card h2 { text-align: center; margin-top: 0; }
-        input { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
-        button { width: 100%; padding: 10px; background: #0070f3; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
-        button:hover { background: #005bb5; }
-        .error-message { color: red; font-size: 0.85rem; display: none; text-align: center; margin-top: 10px; }
+        /* 1. Full-screen Background Setup */
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            /* Use your uploaded image as the full-screen background */
+            background-image: url('background.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+
+        /* 2. Top-Left Logo Styling */
+        .mahe-logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 150px; /* Adjust size as needed */
+            height: auto;
+            z-index: 10;
+        }
+
+        /* 3. The Transparent Login Card Styling */
+        .login-card {
+            background-color: rgba(255, 255, 255, 0.6); /* Semi-transparent white */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            backdrop-filter: blur(5px); /* Adds a nice glass effect */
+            z-index: 5;
+        }
+
+        .login-card h2 {
+            margin-top: 0;
+            color: #333;
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        /* Input Field Styling */
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box; /* Important for padding */
+            font-size: 1rem;
+        }
+
+        /* The Brown Sign-In Button Styling */
+        .sign-in-btn {
+            background-color: #a05a2c; /* Matches the image */
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.1rem;
+            width: 100%;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .sign-in-btn:hover {
+            background-color: #8a4d25; /* Slightly darker on hover */
+        }
+
+        /* Error Message Styling */
+        .error-message {
+            color: #d9534f; /* Red */
+            margin-top: 15px;
+            display: none;
+            font-size: 0.9rem;
+        }
+
+        /* Footer Links Styling */
+        .footer-links {
+            margin-top: 25px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .footer-links a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
     </style>
 </head>
 <body>
 
     <div class="login-card">
+        <h2></h2>
         <form id="loginForm">
-            <input type="email" id="emailInput" placeholder="Email ID" required>
-            <input type="password" id="passwordInput" placeholder="Password" required>
-            <button type="submit">Sign in</button>
+            <div class="input-group">
+                <label for="emailInput">MAHE Email ID</label>
+                <input type="email" id="emailInput" placeholder="e.g., student.name@learner.manipal.edu" required>
+            </div>
+            
+            <div class="input-group">
+                <label for="passwordInput">Password</label>
+                <input type="password" id="passwordInput" required>
+            </div>
+
+            <button type="submit" class="sign-in-btn">Sign in</button>
             <div id="errorMsg" class="error-message">Invalid email or password.</div>
         </form>
+
+        <div class="footer-links">
+            <a href="#">Forgot Password?</a> | 
+            <a href="#">Request Access / Trouble signing in?</a>
+        </div>
     </div>
 
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(event) {
-            // CRITICAL: This stops the browser from sending a POST request to Vercel
+            // Stops the page from reloading/posting to Vercel
             event.preventDefault(); 
 
-            const email = document.getElementById('emailInput').value;
-            const password = document.getElementById('passwordInput').value;
+            // Get values and trim whitespace
+            const email = document.getElementById('emailInput').value.trim();
+            const password = document.getElementById('passwordInput').value.trim();
             const errorMsg = document.getElementById('errorMsg');
 
-            // Your required credentials
+            // Set the strict credentials
             const validEmail = "kchakresh.mitblr2025@learner.manipal.edu";
             const validPassword = "Chakresh1@mit";
 
+            // Verify
             if (email === validEmail && password === validPassword) {
-                // Save a simple flag in the browser to remember the user is logged in
+                // Set the auth flag and redirect to the *correct* filename
                 localStorage.setItem('isAuthenticated', 'true');
-                // Redirect to your index page
-                window.location.href = 'dashboard.html';
+                window.location.href = 'dashboard.html'; 
             } else {
-                // Show error
+                // Show the error message
                 errorMsg.style.display = 'block';
             }
         });
