@@ -1,6 +1,23 @@
 <!DOCTYPE html>
 <!-- saved from url=(0035) -->
-<html lang="en" dir="ltr" class="slds-no-wcag"><head><script>
+<html lang="en" dir="ltr" class="slds-no-wcag"><head><button onclick="logout()" style="
+    padding: 10px 20px;
+    background: #f58232;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: 600;
+">
+    Logout
+</button>
+
+<script>
+    function logout() {
+        localStorage.clear();
+        window.location.href = 'login.html';
+    }
+</script><script>
     if (localStorage.getItem('isLoggedIn') !== 'true') {
         window.location.href = './login.html';
     }
@@ -327,6 +344,13 @@ body > div.themeLayoutStarterWrapper.isHeroUnderHeader-false.isHeaderPinned-fals
 @media only screen and (max-width: 47.9375em) {.uiPanel--notificationsPanel { width: 1351px; left: 0 !important; }
 .unsNotificationsPanel .listContainer { width: auto; }
 }</style></head><body class="null comm-page-home" monica-id="ofpnmcalabcbjgholdjcjblkibolbppb" monica-version="9.0.10"><body>
+    <script>
+        if (localStorage.getItem('isLoggedIn') !== 'true') {
+            window.location.href = 'login.html';
+        }
+    </script>
+
+    <!-- Rest of your existing content --><body>
     <!-- Logout Button -->
     <div id="logoutContainer" style="
         position: fixed;
