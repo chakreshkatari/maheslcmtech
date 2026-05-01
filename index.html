@@ -326,7 +326,81 @@ body > div.themeLayoutStarterWrapper.isHeroUnderHeader-false.isHeaderPinned-fals
 .uiTooltip .tooltip-invisible { width: 1px; }
 @media only screen and (max-width: 47.9375em) {.uiPanel--notificationsPanel { width: 1351px; left: 0 !important; }
 .unsNotificationsPanel .listContainer { width: auto; }
-}</style></head><body class="null comm-page-home" monica-id="ofpnmcalabcbjgholdjcjblkibolbppb" monica-version="9.0.10"><div class="auraMsgBox auraLoadingBox" id="auraLoadingBox"><div class="logo"></div><div class="spinner"></div><span>Loading</span></div><div class="" id="auraErrorMask"><div role="dialog" aria-labelledby="auraErrorTitle" aria-describedby="auraErrorMessage" aria-modal="true" class="auraErrorBox" id="auraError"><span><a role="button" href="Home.html" id="dismissError" title="Cancel and close" class="close" aria-label="Cancel and close"><span aria-hidden="true">×</span></a><span id="auraErrorTitle">Sorry to interrupt</span></span><div id="auraErrorMessage">CSS Error</div><div id="auraErrorStack"></div><div class="auraErrorFooter"><a role="button" href="Home.html" id="auraErrorReload">Refresh</a></div></div></div><!--"'--><script type="text/javascript" nonce="">
+}</style></head><body class="null comm-page-home" monica-id="ofpnmcalabcbjgholdjcjblkibolbppb" monica-version="9.0.10"><body>
+    <!-- Logout Button -->
+    <div id="logoutContainer" style="
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    ">
+        <span id="userEmail" style="
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        "></span>
+        <button id="logoutBtn" onclick="logout()" style="
+            padding: 10px 20px;
+            background: #f58232;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        " onmouseover="this.style.background='#e67e1a'" onmouseout="this.style.background='#f58232'">
+            Logout
+        </button>
+    </div>
+
+    <!-- Authentication Check Script - MUST BE FIRST -->
+    <script>
+        // Check authentication before page loads
+        (function() {
+            const isLoggedIn = localStorage.getItem('isLoggedIn');
+            if (isLoggedIn !== 'true') {
+                // Prevent flash of content
+                document.body.style.display = 'none';
+                window.location.replace('./login.html');
+                return;
+            }
+
+            // If logged in, show the page
+            document.body.style.display = 'block';
+
+            // Display user email
+            const userEmail = localStorage.getItem('userEmail');
+            const userEmailElement = document.getElementById('userEmail');
+            if (userEmailElement && userEmail) {
+                userEmailElement.textContent = userEmail;
+            }
+        })();
+
+        // Logout function
+        function logout() {
+            localStorage.clear();
+            window.location.replace('./login.html');
+        }
+
+        // Prevent back button after logout
+        window.addEventListener('pageshow', function(event) {
+            if (event.persisted) {
+                if (localStorage.getItem('isLoggedIn') !== 'true') {
+                    window.location.replace('./login.html');
+                }
+            }
+        });
+    </script>
+
+    <!-- Rest of your HTML content goes here --><div class="auraMsgBox auraLoadingBox" id="auraLoadingBox"><div class="logo"></div><div class="spinner"></div><span>Loading</span></div><div class="" id="auraErrorMask"><div role="dialog" aria-labelledby="auraErrorTitle" aria-describedby="auraErrorMessage" aria-modal="true" class="auraErrorBox" id="auraError"><span><a role="button" href="Home.html" id="dismissError" title="Cancel and close" class="close" aria-label="Cancel and close"><span aria-hidden="true">×</span></a><span id="auraErrorTitle">Sorry to interrupt</span></span><div id="auraErrorMessage">CSS Error</div><div id="auraErrorStack"></div><div class="auraErrorFooter"><a role="button" href="Home.html" id="auraErrorReload">Refresh</a></div></div></div><!--"'--><script type="text/javascript" nonce="">
         (function() {
             if (!navigator.cookieEnabled) {
                 var cookieMessage = document.createElement("div");
