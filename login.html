@@ -177,14 +177,6 @@
             color: #999;
         }
 
-        .security-info svg {
-            width: 14px;
-            height: 14px;
-            display: inline-block;
-            margin-right: 5px;
-            vertical-align: middle;
-        }
-
         @media (max-width: 600px) {
             .login-container {
                 padding: 40px 25px;
@@ -256,8 +248,8 @@
         const loading = document.getElementById('loading');
         const signinBtn = document.getElementById('signinBtn');
 
-        // Check if already logged in on page load
-        window.addEventListener('load', () => {
+        // Check if already logged in when page loads
+        document.addEventListener('DOMContentLoaded', function() {
             if (localStorage.getItem('isLoggedIn') === 'true') {
                 window.location.href = './index.html';
             }
