@@ -106,22 +106,26 @@
     </div>
 
     <script>
-        document.getElementById('loginForm').addEventListener('submit', function(event) {
-            event.preventDefault(); 
+        document.getElementById('loginForm').addEventListener('submit', async function(event) {
+    event.preventDefault(); 
 
-            const email = document.getElementById('emailInput').value.trim();
-            const password = document.getElementById('passwordInput').value.trim();
-            
-            const validEmail = "kchakresh.mitblr2025@learner.manipal.edu";
-            const validPassword = "Chakresh1@mit";
+    const email = document.getElementById('emailInput').value.trim();
+    const password = document.getElementById('passwordInput').value.trim();
+    
+    // Call the Vercel function instead of checking locally
+    const response = await fetch('/api/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    });
 
-            if (email === validEmail && password === validPassword) {
-                localStorage.setItem('isAuthenticated', 'true');
-                window.location.href = 'Home.html'; 
-            } else {
-                document.getElementById('errorMsg').style.display = 'block';
-            }
-        });
+    if (response.ok) {
+        localStorage.setItem('isAuthenticated', 'true');
+        window.location.href = 'Home.html'; 
+    } else {
+        document.getElementById('errorMsg').style.display = 'block';
+    }
+});
     </script>
 
 </body>
